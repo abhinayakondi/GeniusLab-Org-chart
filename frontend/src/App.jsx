@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import OrgChartComponent from "./components/OrgChart";
+import OrgChartComponent from "./components/org-chart";
 
 function App() {
   const [employees, setEmployees] = useState([]);
