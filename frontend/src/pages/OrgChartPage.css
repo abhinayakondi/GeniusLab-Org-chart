@@ -1,41 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
 
-
-full-page {
+* {
+  margin: 0;
+  padding: 0;
+}
+/*
+*{} means every single element on the page.
+can be used to reset the entire page
+*/
+.full-page {
   position: relative; 
   width: 100%;
   height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
 }
-page-heading {
-  width: 100%;
-  position: absolute;
-  top: 10px;
-  right: 20px; 
-  z-index: 10; 
-}
-h2.org-chart-heading {
-  font-size: 28px;
-  font-family: 'Inter';
-  width: fit-content;
-  font-weight: 400;
-  background-color: aqua;
-  margin: 0;
-}
-org-chart {
+.org-chart {
   width: 100%;
   height: 100%;
 }
-.root{
-  min-height:100vh;
-  display: flex;
-  flex-direction: column;
-}
-main{
-  flex-grow: 1;
-}
+/* . before the class name is used to target the class while without . it targets the tag */
 body{
   background-color: rgb(247, 134, 134);
+  margin: 0; 
+  padding: 0;
+  display: block;
 }
 
 
