@@ -12,7 +12,9 @@ function OrgChartComponent({ data }) {
         .container("#chart")
         .nodeWidth(() => 260)
         .nodeHeight(() => 140)
-        .childrenMargin(() => 60);
+        .childrenMargin(() => 60)
+        .svgWidth(() => window.innerWidth)  // make chart width full screen
+        .svgHeight(() => window.innerHeight); // make chart height full screen
     }
 
     chartRef.current
@@ -58,11 +60,22 @@ function OrgChartComponent({ data }) {
           </div>
         `;
       })
-      .render();
+      .render()
+      
 
   }, [data]);
 
-  return <div id="chart"></div>;
+  return (
+  <div
+      id="chart"
+      style={{
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "#79de7d", // Optional background
+        overflow: "hidden", // D3-org-chart handles its own internal panning/scrolling
+      }}
+    ></div>
+  );
 }
 
 export default OrgChartComponent;

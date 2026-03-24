@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import OrgChartComponent from "../components/org-chart";
+import Navbar from "../components/navbar";
 import './OrgChartPage.css'
+import Avatar from "@mui/material/Avatar";
 
 function OrgChartPage() {
   const [employees, setEmployees] = useState([]);
@@ -12,10 +14,11 @@ function OrgChartPage() {
   }, []);
 
   return (
-    <div class="full-page">
-        <h2>Org-Chart</h2>
-        <OrgChartComponent data={employees} />
+    <div className="full-page">
+        <Navbar />
+        <OrgChartComponent className="org-chart" data={employees} />
     </div>
+        
   );
 }
 
