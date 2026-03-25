@@ -65,7 +65,7 @@ export default function SearchAppBar() {
             <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
-            placeholder={isFocused ? "Search…" : ""}
+            placeholder={isFocused ? "Search" : ""}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             inputProps={{ 'aria-label': 'search' }}

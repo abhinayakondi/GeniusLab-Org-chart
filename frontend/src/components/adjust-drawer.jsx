@@ -29,7 +29,17 @@ export default function TemporaryDrawer() {
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText 
+                primary={text} 
+                slotProps={{ 
+                  primary: { 
+                    sx: { 
+                      fontFamily: 'Inter', 
+                      fontWeight: 400 
+                    } 
+                  } 
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -42,7 +52,17 @@ export default function TemporaryDrawer() {
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText 
+                primary={text} 
+                slotProps={{ 
+                  primary: { 
+                    sx: { 
+                      fontFamily: 'Inter', 
+                      fontWeight: 400 
+                    } 
+                  } 
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -76,7 +96,7 @@ export default function TemporaryDrawer() {
         </IconButton>  
 
         {/* <Button onClick={toggleDrawer(true)}>Open drawer</Button> */}
-        <Drawer open={open} onClose={toggleDrawer(false)}>
+        <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
             {DrawerList}
         </Drawer>
     </div>

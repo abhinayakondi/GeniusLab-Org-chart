@@ -6,12 +6,14 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
 import IconButton from '@mui/material/IconButton';
 import AvatarIcon from '../assets/user-svgrepo-com.svg?react';
+import LogoutIcon from '../assets/arrow-right-from-bracket-svgrepo-com.svg?react';
+import SettingsIcon from '../assets/sun-alt-svgrepo-com.svg?react';
+import AvatarIcon2 from '../assets/circle-user-svgrepo-com.svg?react';
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -25,8 +27,6 @@ export default function AccountMenu() {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-        <Typography sx={{ minWidth: 100 }}>Profile</Typography> */}
         
         <Tooltip title="Account settings">
 
@@ -71,8 +71,8 @@ export default function AccountMenu() {
             elevation: 0,
             sx: {
               overflow: 'visible',
-              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-              mt: 1.5,
+              filter: 'drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.18))',
+              mt: 2,
               '& .MuiAvatar-root': {
                 width: 32,
                 height: 32,
@@ -84,7 +84,7 @@ export default function AccountMenu() {
                 display: 'block',
                 position: 'absolute',
                 top: 0,
-                right: 14,
+                right: 19,
                 width: 10,
                 height: 10,
                 bgcolor: 'background.paper',
@@ -97,19 +97,59 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
+        <MenuItem onClick={handleClose} sx={{ fontFamily: 'Inter', fontWeight: 400 }}>
+          <IconButton
+            sx={{
+              '& svg': {
+                  fontSize: '18px', 
+                  width: '25px',
+                  height: '25px',
+                  position: 'relative',
+                  top: '0px',    // Positive moves down, negative moves up
+                  left: '0px',  // Positive moves right, negative moves left
+              },
+              '& path': {
+                  strokeWidth: '1', // Default is usually 2. Lower = Thinner.
+              }
+            }}>
+            <AvatarIcon2 />
+          </IconButton>
+          My account
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose} sx={{ fontFamily: 'Inter', fontWeight: 400 }}>
           <ListItemIcon>
-            <Settings fontSize="small" />
+            <IconButton
+            sx={{
+              '& svg': {
+                  fontSize: '18px', 
+                  width: '25px',
+                  height: '25px',
+                  position: 'relative',
+                  top: '0px',    // Positive moves down, negative moves up
+                  left: '0px',  // Positive moves right, negative moves left
+              }
+            }}>
+            <SettingsIcon />
+          </IconButton>
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose} sx={{ fontFamily: 'Inter', fontWeight: 400 }}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <IconButton
+            sx={{
+              '& svg': {
+                  fontSize: '18px', 
+                  width: '25px',
+                  height: '25px',
+                  position: 'relative',
+                  top: '0px',    // Positive moves down, negative moves up
+                  left: '0px',  // Positive moves right, negative moves left
+              }
+            }}>
+            <LogoutIcon />
+          </IconButton>
           </ListItemIcon>
           Logout
         </MenuItem>
