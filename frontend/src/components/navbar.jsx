@@ -9,6 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SearchButton from "../components/search-icon-button";
 import AccountMenu from "./account-icon-menu";
 import AdjustDrawer from "../components/adjust-drawer";
+import Divider from '@mui/material/Divider';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -64,13 +65,23 @@ export default function SearchAppBar() {
             component="div"
             fontFamily="Inter"
             fontWeight={400}
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, color: '#000' }}
+            sx={{ display: { xs: 'none', sm: 'block' }, color: '#000', mr: 4 }}
           >
             Org chart
           </Typography>
 
-          <SearchButton />
+          <SearchButton 
+          sx={{mr: 2}}
+          />
+
+          <Box sx={{ flexGrow: 1 }} />
           <AdjustDrawer />
+          <Divider 
+            orientation="vertical" 
+            variant="middle" 
+            flexItem 
+            sx={{ height: 24, my: 'auto', mx: 0.5, borderWidth: 1.2, borderColor: 'rgba(0, 0, 0, 0.12)' }} // Set height and center it vertically
+          />
           <AccountMenu />
           
           <Search sx={{ color: '#000' }}>

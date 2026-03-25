@@ -57,17 +57,15 @@ export default function TemporaryDrawer() {
         aria-label="open drawer"
         sx={{
             borderRadius: '50%',
-            padding: '30px',
-            border: '1px solid #ccc',
+            padding: '15px',
             transition: 'all 0.2s ease-in-out',
             '&:hover': {
                 backgroundColor: '#e6e6e691', 
-                borderColor: '#000',
             },
             '& svg': {
-                fontSize: '30px', 
-                width: '30px',
-                height: '30px',
+                fontSize: '18px', 
+                width: '18px',
+                height: '18px',
                 position: 'relative',
                 top: '0px',    // Positive moves down, negative moves up
                 left: '0px',  // Positive moves right, negative moves left
