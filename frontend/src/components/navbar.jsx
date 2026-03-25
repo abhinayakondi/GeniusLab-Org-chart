@@ -4,14 +4,11 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
 import SearchButton from "../components/search-icon-button";
-import StackButton from "../components/stack-icon-button";
-import AvatarButton from "../components/avatar-icon-button";
+import AccountMenu from "./account-icon-menu";
+import AdjustDrawer from "../components/adjust-drawer";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,8 +54,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchAppBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" elevation={0}>
+    <Box sx={{ flexGrow: 1, }}>
+      <AppBar position="static" elevation={0} sx={{ backgroundColor: '#fff' }}>
         <Toolbar>
           
           <Typography
@@ -67,16 +64,16 @@ export default function SearchAppBar() {
             component="div"
             fontFamily="Inter"
             fontWeight={400}
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, color: '#000' }}
           >
             Org chart
           </Typography>
 
           <SearchButton />
-          <StackButton />
-          <AvatarButton />
-
-          <Search>
+          <AdjustDrawer />
+          <AccountMenu />
+          
+          <Search sx={{ color: '#000' }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
