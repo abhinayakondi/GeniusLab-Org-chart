@@ -1,19 +1,23 @@
 import { styled, alpha } from '@mui/material/styles';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
 
 import SearchButton from "../components/search-icon-button";
 import AccountMenu from "./account-icon-menu";
 import AdjustDrawer from "../components/adjust-drawer";
 import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '../assets/search-alt-svgrepo-com.svg?react';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
+  border: '1px solid #ccc',
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -53,7 +57,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
 export default function SearchAppBar() {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
     <Box sx={{ flexGrow: 1, }}>
       <AppBar position="static" elevation={0} sx={{ backgroundColor: '#fff' }}>
@@ -85,13 +92,28 @@ export default function SearchAppBar() {
           <AccountMenu />
           
           <Search sx={{ color: '#000' }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
+              <SearchIconWrapper
+              aria-label="search"
+                  sx={{
+                    '& svg': {
+                        fontSize: '18px', 
+                        width: '18px',
+                        height: '18px',
+                        position: 'relative',
+                        top: '0px',    // Positive moves down, negative moves up
+                        left: '0px',  // Positive moves right, negative moves left
+                    }
+                  }}
+              >
+                  <SearchIcon />
+              </SearchIconWrapper>
+
+              <StyledInputBase
+                placeholder={isFocused ? "Search…" : ""} 
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                inputProps={{ 'aria-label': 'search' }}
+              />
           </Search>
         </Toolbar>
       </AppBar>

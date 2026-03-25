@@ -12,7 +12,6 @@ export default function IconButtons() {
         transition: 'all 0.2s ease-in-out',
         '&:hover': {
             backgroundColor: '#e6e6e691', 
-            borderColor: '#000',
         },
         '& svg': {
             fontSize: '18px', 
