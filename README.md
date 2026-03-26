@@ -38,6 +38,7 @@ Built with a focus on performance and user experience, this tool allows HR profe
 ```bash
 git clone [https://github.com/abhinayakondi/GeniusLab-Org-chart.git](https://github.com/abhinayakondi/GeniusLab-Org-chart.git)
 cd GeniusLab-Org-chart
+```
 
 ### 2. Backend Setup
 
