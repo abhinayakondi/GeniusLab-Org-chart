@@ -6,7 +6,7 @@ import Divider from '@mui/material/Divider';
 import AccountMenu from "./account-icon-menu";
 import AdjustDrawer from "../components/adjust-drawer";
 import SearchField from "../components/search-field";
-import UploadButton from "../components/upload-button";
+import ExportPDFButton from "./export-pdf-button";
 
 export default function SearchAppBar() {
   return (
@@ -32,7 +32,6 @@ export default function SearchAppBar() {
             sx={{ height: 24, my: 'auto', mx: 0.5, borderWidth: 1.2, borderColor: 'rgba(0, 0, 0, 0.12)' }} 
           />
           <AccountMenu />
-          <UploadButton />
 
         </Toolbar>
       </AppBar>

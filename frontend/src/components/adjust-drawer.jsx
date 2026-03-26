@@ -12,6 +12,8 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import IconButton from '@mui/material/IconButton';
 import StackIcon from '../assets/align-center-alt-svgrepo-com.svg?react';
+import UploadButton from './upload-button';
+import ExportPDFButton from "../components/export-pdf-button";
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -23,49 +25,68 @@ export default function TemporaryDrawer() {
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText 
-                primary={text} 
-                slotProps={{ 
-                  primary: { 
-                    sx: { 
-                      fontFamily: 'Inter', 
-                      fontWeight: 400 
-                    } 
-                  } 
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText 
-                primary={text} 
-                slotProps={{ 
-                  primary: { 
-                    sx: { 
-                      fontFamily: 'Inter', 
-                      fontWeight: 400 
-                    } 
-                  } 
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem 
+          disablePadding
+          sx={{ justifyContent: 'left', px: 0, py: 1 }} 
+          onClick={(e) => e.stopPropagation()} // Prevents drawer from closing when clicking the button
+        >
+          <UploadButton />
+        </ListItem>
+        
+        <ListItem 
+          disablePadding
+          sx={{ justifyContent: 'left', px: 0, py: 1 }} 
+          // onClick={(e) => e.stopPropagation()} // Should it collapse on click or not? -> Yes
+        >
+          <ExportPDFButton />
+        </ListItem>
+        
+        <Divider sx={{ mb: 1 }} />
+        
+        {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary={text} 
+                    slotProps={{ 
+                      primary: { 
+                        sx: { 
+                          fontFamily: 'Inter', 
+                          fontWeight: 400 
+                        } 
+                      } 
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton >
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary={text} 
+                    slotProps={{ 
+                      primary: { 
+                        sx: { 
+                          fontFamily: 'Inter', 
+                          fontWeight: 400 
+                        } 
+                      } 
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+        ))} */}
+
       </List>
     </Box>
   );
@@ -94,8 +115,7 @@ export default function TemporaryDrawer() {
         >
           <StackIcon />
         </IconButton>  
-
-        {/* <Button onClick={toggleDrawer(true)}>Open drawer</Button> */}
+        
         <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
             {DrawerList}
         </Drawer>

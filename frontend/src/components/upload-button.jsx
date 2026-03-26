@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import UploadIcon from '../assets/cloud-up-arrow-svgrepo-com.svg?react';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -18,11 +18,27 @@ export default function InputFileUpload() {
   return (
     <Button
       component="label"
-      role={undefined}
       variant="contained"
+      fullWidth // Make the button take the full width of its container
       tabIndex={-1}
-      fontFamily="UnifrakturMaguntia"
-      startIcon={<CloudUploadIcon />}
+      disableElevation
+      startIcon={<UploadIcon style={{ width: 20, height: 20 }} />}
+      sx={{
+        borderRadius: 0,
+        fontSize: 14,
+        fontFamily: 'Inter',
+        color: '#000',
+        backgroundColor: '#fff',
+        textTransform: 'none',
+        '&:hover': {
+          backgroundColor: '#e6e6e691',
+        },
+        '& .MuiButton-startIcon': {
+          marginRight: '8px', // Adjust space between icon and text
+          display: 'flex',
+          alignItems: 'center',
+        },
+      }}
     >
       Upload files
       <VisuallyHiddenInput
