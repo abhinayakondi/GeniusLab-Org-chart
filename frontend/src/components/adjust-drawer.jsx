@@ -15,7 +15,7 @@ import StackIcon from '../assets/align-center-alt-svgrepo-com.svg?react';
 import UploadButton from './upload-button';
 import ExportPDFButton from "../components/export-pdf-button";
 
-export default function TemporaryDrawer() {
+export default function AdjustDrawer({ chartInstance }) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -38,7 +38,7 @@ export default function TemporaryDrawer() {
           sx={{ justifyContent: 'left', px: 0, py: 1 }} 
           // onClick={(e) => e.stopPropagation()} // Should it collapse on click or not? -> Yes
         >
-          <ExportPDFButton />
+          <ExportPDFButton chartInstance={chartInstance} />
         </ListItem>
         
         <Divider sx={{ mb: 1 }} />

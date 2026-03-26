@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { OrgChart } from "d3-org-chart";
 
-function OrgChartComponent({ data }) {
+function OrgChartComponent({ data, setChartInstance }) {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -13,6 +13,10 @@ function OrgChartComponent({ data }) {
         .nodeWidth(() => 260)
         .nodeHeight(() => 140)
         .childrenMargin(() => 60)
+
+         if (setChartInstance) {
+            setChartInstance(chartRef.current);
+         }
     }
 
     chartRef.current

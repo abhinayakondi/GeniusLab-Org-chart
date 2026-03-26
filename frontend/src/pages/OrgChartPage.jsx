@@ -5,6 +5,7 @@ import './OrgChartPage.css'
 
 function OrgChartPage() {
   const [employees, setEmployees] = useState([]);
+  const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/employees")
@@ -14,8 +15,12 @@ function OrgChartPage() {
 
   return (
     <div className="full-page">
-        <Navbar />
-        <OrgChartComponent className="org-chart" data={employees} />
+        <Navbar chartInstance={chartInstance} />
+        <OrgChartComponent 
+          className="org-chart" 
+          data={employees} 
+          setChartInstance={setChartInstance}
+        />
     </div>
         
   );

@@ -6,9 +6,8 @@ import Divider from '@mui/material/Divider';
 import AccountMenu from "./account-icon-menu";
 import AdjustDrawer from "../components/adjust-drawer";
 import SearchField from "../components/search-field";
-import ExportPDFButton from "./export-pdf-button";
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ chartInstance }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" elevation={0} sx={{ backgroundColor: '#fff' }}>
@@ -24,7 +23,7 @@ export default function SearchAppBar() {
           </Typography>
           <SearchField sx={{ mr: 2 }}/>
           <Box sx={{ flexGrow: 1 }} />
-          <AdjustDrawer />
+          <AdjustDrawer chartInstance={chartInstance}/>
           <Divider 
             orientation="vertical" 
             variant="middle" 
