@@ -7,9 +7,14 @@ const upload = multer({ storage: multer.memoryStorage() });
 const app = express();
 app.use(cors());
 
-async function processExcel(buffer) {
+async function parseExcelData(source) {
   const workbook = new ExcelJS.Workbook();
-  await workbook.xlsx.load(buffer);
+  if (typeof source === "string") {
+    await workbook.xlsx.readFile(source); // For the local file
+  } 
+  else {
+    await workbook.xlsx.load(source); // For the uploaded buffer
+  }
 
   const sheet = workbook.worksheets[0];
 
@@ -42,11 +47,22 @@ async function processExcel(buffer) {
   return employees;
 }
 
+app.get("/api/employees", async (req, res) => {
+  try {
+    const employees = await parseExcelData("./employees.xlsx"); 
+    res.json(employees);
+  } 
+  catch (error) {
+    console.error("Error reading default Excel:", error);
+    res.status(500).json({ error: "Failed to read default file" });
+  }
+});
+
 app.post("/api/upload", upload.single("file"), async (req, res) => {
   try {
     if (!req.file) return res.status(400).send("No file uploaded.");
     
-    const employees = await processExcel(req.file.buffer);
+    const employees = await parseExcelData(req.file.buffer);
     res.json(employees);
   } 
   catch (error) {
