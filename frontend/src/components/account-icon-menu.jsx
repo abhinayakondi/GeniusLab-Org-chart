@@ -108,7 +108,9 @@ export default function AccountMenu() {
                   top: '0px',    // Positive moves down, negative moves up
                   left: '0px',  // Positive moves right, negative moves left
               },
-              
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
             }}>
             <AvatarIcon2 />
           </IconButton>
@@ -126,7 +128,10 @@ export default function AccountMenu() {
                   position: 'relative',
                   top: '0px',    // Positive moves down, negative moves up
                   left: '0px',  // Positive moves right, negative moves left
-              }
+              },
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
             }}>
             <SettingsIcon />
           </IconButton>
@@ -144,7 +149,10 @@ export default function AccountMenu() {
                   position: 'relative',
                   top: '0px',    // Positive moves down, negative moves up
                   left: '0px',  // Positive moves right, negative moves left
-              }
+              },
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
             }}>
             <LogoutIcon />
           </IconButton>

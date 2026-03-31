@@ -48,19 +48,22 @@ export default function InputFileUpload({ onUploadSuccess }) {
       fullWidth // Make the button take the full width of its container
       tabIndex={-1}
       disableElevation
-      startIcon={<UploadIcon style={{ width: 20, height: 20 }} />}
+      startIcon={<UploadIcon style={{ width: 18, height: 18 }} />}
       sx={{
-        borderRadius: 0,
-        fontSize: 14,
+        borderRadius: '50px', 
+        border: '1px solid #ccc',
+        fontSize: 12,
         fontFamily: 'Inter',
         color: '#000',
         backgroundColor: '#fff',
         textTransform: 'none',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         '&:hover': {
-          backgroundColor: '#e6e6e691',
+          //backgroundColor: '#e8e8e8',
+          boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.2)',
         },
         '& .MuiButton-startIcon': {
-          marginRight: '8px', // Adjust space between icon and text
+          marginRight: '6px', // Adjust space between icon and text
           display: 'flex',
           alignItems: 'center',
         },

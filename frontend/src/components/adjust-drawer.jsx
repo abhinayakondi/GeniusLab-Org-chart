@@ -23,11 +23,20 @@ export default function AdjustDrawer({ chartInstance, onDataUpload }) {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-      <List>
+    <Box 
+      sx={{ 
+        width: 250,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end', // ✅ key line
+      }} 
+      role="presentation" 
+      onClick={toggleDrawer(false)}
+    >
+      <List sx={{ pt: 8 }}>
         <ListItem 
           disablePadding
-          sx={{ justifyContent: 'left', px: 0, py: 1 }} 
+          sx={{ justifyContent: 'left', pr: 2, pl: 8, py: 0.5 }} 
           onClick={(e) => e.stopPropagation()} // Prevents drawer from closing when clicking the button
         >
           <UploadButton onUploadSuccess={(data) => {
@@ -38,13 +47,13 @@ export default function AdjustDrawer({ chartInstance, onDataUpload }) {
         
         <ListItem 
           disablePadding
-          sx={{ justifyContent: 'left', px: 0, py: 1 }} 
+          sx={{ justifyContent: 'left', pr: 2, pl: 8, py: 0.5 }} 
           // onClick={(e) => e.stopPropagation()} // Should it collapse on click or not? -> Yes
         >
           <ExportPDFButton chartInstance={chartInstance} />
         </ListItem>
         
-        <Divider sx={{ mb: 1 }} />
+        {/* <Divider sx={{ mb: 1 }} /> */}
         
         {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem key={text} disablePadding>
@@ -95,7 +104,7 @@ export default function AdjustDrawer({ chartInstance, onDataUpload }) {
   );
 
   return (
-    <div>
+    <div >
         <IconButton 
         onClick={toggleDrawer(true)}
         aria-label="open drawer"
@@ -119,7 +128,24 @@ export default function AdjustDrawer({ chartInstance, onDataUpload }) {
           <StackIcon />
         </IconButton>  
         
-        <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+        <Drawer 
+          anchor="right" 
+          open={open} 
+          onClose={toggleDrawer(false)} 
+          slotProps={{
+            paper: {
+              sx: {
+                backgroundColor: 'transparent',
+                boxShadow: 'none',  
+              },
+            },
+            backdrop: {
+              sx: {
+                backgroundColor: 'transparent', 
+              },
+            },
+          }}
+        >
             {DrawerList}
         </Drawer>
     </div>

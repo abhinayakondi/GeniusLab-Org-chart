@@ -34,15 +34,24 @@ export default function ExportIconButton({ chartInstance }) {
       onClick={handleExport}
       variant="outlined" 
       fullWidth
-      startIcon={<PDFicon style={{ width: 20, height: 20 }} />}
+      startIcon={<PDFicon style={{ width: 18, height: 18 }} />}
       sx={{
-        textTransform: 'none', 
-        fontFamily: 'Inter',   
-        borderRadius: 0,       
+        borderRadius: '50px', 
+        border: '1px solid #ccc',
+        fontSize: 12,
+        fontFamily: 'Inter',
         color: '#000',
-        border: 'none',
+        backgroundColor: '#fff',
+        textTransform: 'none',
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
         '&:hover': {
-          backgroundColor: '#e6e6e691',
+          //backgroundColor: '#e8e8e8',
+          boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.2)',
+        },
+        '& .MuiButton-startIcon': {
+          marginRight: '6px', // Adjust space between icon and text
+          display: 'flex',
+          alignItems: 'center',
         },
       }}
     >
