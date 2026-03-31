@@ -17,6 +17,7 @@ function OrgChartPage() {
     <div className="full-page">
         <Navbar 
           chartInstance={chartInstance} 
+          data={employees}
           onDataUpload={setEmployees}
         />
         <OrgChartComponent 

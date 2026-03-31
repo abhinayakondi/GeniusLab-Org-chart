@@ -48,8 +48,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchField({ chartInstance, data }) {
   const [isFocused, setIsFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter') {
+      if (!chartInstance || !data) return;
+      const employee = data.find(emp => 
+        emp.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+      if (employee) {
+        // 1. Clear previous highlights
+        chartInstance.clearHighlighting();
+        // 2. Set the new highlighted node
+        chartInstance.setHighlighted(employee.id).render();
+        // 3. Expand all parents and center the node
+        chartInstance.setUpToTheRootHighlighted(employee.id).render();
+        setSearchQuery("");
+      } 
+      else {
+        alert("Employee not found");
+      }
+    }
+  };
 
   return (
    <Search isFocused={isFocused} sx={{ color: '#000' }}>
@@ -66,6 +89,9 @@ export default function SearchAppBar() {
         </SearchIconWrapper>
         <StyledInputBase
             placeholder={isFocused ? "Search" : ""}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleSearch}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             inputProps={{ 'aria-label': 'search' }}

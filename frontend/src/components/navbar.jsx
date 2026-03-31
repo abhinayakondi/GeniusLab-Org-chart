@@ -7,7 +7,7 @@ import AccountMenu from "./account-icon-menu";
 import AdjustDrawer from "../components/adjust-drawer";
 import SearchField from "../components/search-field";
 
-export default function SearchAppBar({ chartInstance, onDataUpload }) {
+export default function SearchAppBar({ chartInstance, data, onDataUpload }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" elevation={0} sx={{ backgroundColor: '#fff' }}>
@@ -21,7 +21,7 @@ export default function SearchAppBar({ chartInstance, onDataUpload }) {
           >
             Org chart
           </Typography>
-          <SearchField sx={{ mr: 2 }}/>
+          <SearchField chartInstance={chartInstance} data={data} sx={{ mr: 2 }}  />
           <Box sx={{ flexGrow: 1 }} />
           <AdjustDrawer chartInstance={chartInstance} onDataUpload={onDataUpload} />
           <Divider 
