@@ -100,7 +100,7 @@ export const navigationCustomizations = {
           },
         }),
       }),
-      select: ({ theme }) => ({
+      select: ({theme}) => ({
         display: 'flex',
         alignItems: 'center',
         ...theme.applyStyles('dark', {
@@ -267,7 +267,7 @@ export const navigationCustomizations = {
   },
   MuiStepLabel: {
     styleOverrides: {
-      label: ({ theme }) => ({
+      label: ( {theme} ) => ({
         '&.Mui-completed': {
           opacity: 0.6,
           ...theme.applyStyles('dark', { opacity: 0.5 }),
