@@ -18,6 +18,8 @@ import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, MicrosoftIcon} from './components/CustomIcons';
 import { useNavigate } from "react-router-dom";
 import { Router, Link as RouterLink} from 'react-router-dom';
+import { useMsal } from "@azure/msal-react";
+//import { loginRequest } from "../../authConfig";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -70,9 +72,51 @@ export default function SignIn(props) {
   const [open, setOpen] = React.useState(false);
 
   const navigate = useNavigate();
+  const { instance } = useMsal();
+
   const handleSignIn = () => {
-    navigate("/org-chart");
+    instance.loginRedirect({
+      scopes: ["openid", "profile", "email"],
+      authority: import.meta.env.VITE_MSAL_AUTHORITY + "/" + import.meta.env.VITE_MSAL_TENANT_ID,
+    });
+    // No code after this will execute!
   };
+
+  // const handleSignIn = async () => {
+  //   try {
+  //     const response = await instance.loginPopup({
+  //       scopes: ["openid", "profile", "email"],
+  //       authority: import.meta.env.VITE_MSAL_AUTHORITY + "/" + import.meta.env.VITE_MSAL_TENANT_ID,
+  //     });
+
+  //     console.log("Login success:", response);
+
+  //     const accounts = instance.getAllAccounts();
+
+  //     if (accounts.length > 0) {
+  //       const user = accounts[0];
+  //       console.log("User Info:", user);
+
+  //       console.log("Name:", user.name);
+  //       console.log("Email:", user.username);//email
+  //       console.log("User ID:", user.localAccountId);
+  //     }
+
+  //     const tokenResponse = await instance.acquireTokenSilent({
+  //       scopes: ["openid", "profile", "email"],
+  //       account: response.account,
+  //     });
+
+  //     console.log("Access Token:", tokenResponse.accessToken);
+
+  //     navigate("/org-chart");
+
+  //   } 
+  //   catch (error) {
+  //     console.error("Login error:", error);
+  //   }
+  // };
+
   const handleSignUp = () => {
     navigate("/sign-up");
   };
@@ -187,14 +231,13 @@ export default function SignIn(props) {
             />
             <ForgotPassword open={open} handleClose={handleClose} />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
-            //   onClick={validateInputs}
               onClick={handleSignIn}
             >
               Sign in
             </Button>
+            
             <Link
               component="button"
               type="button"

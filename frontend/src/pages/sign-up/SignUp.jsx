@@ -225,7 +225,7 @@ export default function SignUp(props) {
               Already have an account?{' '}
               <Link
                 component={RouterLink}
-                to="/sign-in"
+                to="/"
                 variant="body2"
                 sx={{ alignSelf: 'center' }}
               >
