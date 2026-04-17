@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/sign-in/SignIn";
 import SignUp from "./pages/sign-up/SignUp";
+import LandingPage from "./pages/landing-page/LandingPage";
 import OrgChartPage from "./pages/org-chart-page/OrgChartPage";
 import { useEffect } from "react";
 import { useMsal, useIsAuthenticated } from "@azure/msal-react";
@@ -26,6 +27,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<SignIn />} />
+      <Route path="/landing" element={<LandingPage />} />
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/org-chart" element={<OrgChartPage />} />
