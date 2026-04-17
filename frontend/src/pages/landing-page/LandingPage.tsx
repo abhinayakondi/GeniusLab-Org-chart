@@ -1,5 +1,6 @@
 import { EmailSignup } from "./components/EmailSignup";
 import { FeatureCard } from "./components/FeatureCard";
+import Logo from "./assets/ArbreLogo.svg";
 // import * as React from 'react';
 // import { useNavigate } from "react-router-dom";
 // import { Router, Link as RouterLink} from 'react-router-dom';
@@ -20,7 +21,7 @@ export default function App() {
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Network className="size-8 text-blue-600" />
+            <img src={Logo} alt="Arbre Logo" className="h-8 w-8 object-contain" />
             <span className="text-xl">Arbre Org Chart</span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
