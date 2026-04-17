@@ -8,7 +8,7 @@ export function EmailSignup({ onClick }: EmailSignupProps) {
     <div className="flex justify-center">
       <Button 
         size="lg" 
-        className="bg-black text-white h-12 px-6 gap-2" 
+        className="bg-black text-white h-12 px-6 gap-2 cursor-pointer hover:shadow-xl transition-shadow-md duration-100" 
         onClick={onClick}>
           Continue with Email
           <ArrowRight className="size-4" />
