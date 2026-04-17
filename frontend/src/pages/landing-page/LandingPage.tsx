@@ -1,20 +1,25 @@
 import { EmailSignup } from "./components/EmailSignup";
 import { FeatureCard } from "./components/FeatureCard";
 import Logo from "./assets/ArbreLogo.svg";
+import { useMsal } from "@azure/msal-react";
+
 // import * as React from 'react';
 // import { useNavigate } from "react-router-dom";
 // import { Router, Link as RouterLink} from 'react-router-dom';
 // import { ImageWithFallback } from "./components/ImageWithFallback";
-import {
-  Network,
-  Search,
-  Download,
-  Zap,
-  BarChart3,
-  FileSpreadsheet,
-} from "lucide-react";
+import { Network, Search, Download, Zap, BarChart3, FileSpreadsheet,} from "lucide-react";
 
 export default function App() {
+  const { instance } = useMsal();
+
+  const handleSignIn = () => {
+    instance.loginRedirect({
+      scopes: ["openid", "profile", "email"],
+      authority: import.meta.env.VITE_MSAL_AUTHORITY + "/" + import.meta.env.VITE_MSAL_TENANT_ID,
+    });
+    // No code after this will execute!
+  };
+
   return (
     <div className="min-h-screen bg-linear-to-b bg-white-500">
       {/* Header */}
@@ -49,7 +54,9 @@ export default function App() {
             from static spreadsheets into interactive,
             searchable, and exportable organizational charts.
           </p>
-          <EmailSignup />
+          <EmailSignup 
+              onClick={handleSignIn}
+          />
         </div>
 
         {/* Hero Image */}

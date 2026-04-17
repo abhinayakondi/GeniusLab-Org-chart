@@ -14,7 +14,7 @@ function OrgChartComponent({ data, setChartInstance }) {
     if (!chartRef.current) {
       chartRef.current = new OrgChart()
         .container("#chart")
-        .nodeWidth(() => 260)
+        .nodeWidth(() => 240)//node alignment with the content div
         .nodeHeight(() => 140)
         .svgHeight(565)
         .childrenMargin(() => 60) 
@@ -25,8 +25,8 @@ function OrgChartComponent({ data, setChartInstance }) {
           
           d3.select(this)
             .select('.node-rect')
-            .attr("width", 266)   // Ensures rect matches 260
-            .attr("height", 122) // Ensures rect matches 140
+            .attr("width", 240)   // Ensures rect matches 260
+            .attr("height", 140) // Ensures rect matches 140
             .attr("x", 0)
             .attr("y", 0)
             .attr("rx", 12)                // Matches your div's border-radius
@@ -96,7 +96,7 @@ function OrgChartComponent({ data, setChartInstance }) {
               height: 40px;
               margin: 0 auto 8px;
               border-radius: 50%;
-              background: #007bff;
+              background: linear-gradient(115deg, #3b82f6, #8b5cf6);
               color: white;
               display: flex;
               align-items: center;

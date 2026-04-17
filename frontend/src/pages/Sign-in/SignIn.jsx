@@ -18,7 +18,6 @@ import AppTheme from '../shared-theme/AppTheme';
 import { GoogleIcon, MicrosoftIcon} from './components/CustomIcons';
 import { useNavigate } from "react-router-dom";
 import { Router, Link as RouterLink} from 'react-router-dom';
-import { useMsal } from "@azure/msal-react";
 //import { loginRequest } from "../../authConfig";
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -72,15 +71,8 @@ export default function SignIn(props) {
   const [open, setOpen] = React.useState(false);
 
   const navigate = useNavigate();
-  const { instance } = useMsal();
 
-  const handleSignIn = () => {
-    instance.loginRedirect({
-      scopes: ["openid", "profile", "email"],
-      authority: import.meta.env.VITE_MSAL_AUTHORITY + "/" + import.meta.env.VITE_MSAL_TENANT_ID,
-    });
-    // No code after this will execute!
-  };
+  const handleSignIn = () => { navigate("/org-chart"); };
 
   // const handleSignIn = async () => {
   //   try {
@@ -231,6 +223,7 @@ export default function SignIn(props) {
             />
             <ForgotPassword open={open} handleClose={handleClose} />
             <Button
+              type="submit"
               fullWidth
               variant="contained"
               onClick={handleSignIn}
