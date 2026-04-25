@@ -1,5 +1,5 @@
 import React from "react";
-import { MoreHorizontal, FileEdit, Eye, Trash2 } from "lucide-react";
+import { MoreHorizontal, FileEdit, Eye, Trash2, CheckIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -60,13 +60,7 @@ export function FileTable({
               const isSelected = selectedFileId === file.id;
               
               return (
-                <tr 
-                  key={file.id} 
-                  onClick={() => onSelectFile(file.id)}
-                  className={`hover:bg-gray-50 transition-colors cursor-pointer group ${
-                    isSelected ? 'bg-blue-50/40' : ''
-                  }`}
-                >
+                <tr>
                   <td className="py-3 px-4 text-sm text-gray-900 font-['Inter'] font-medium">
                     {file.filename}
                   </td>
@@ -98,6 +92,15 @@ export function FileTable({
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-40 font-['Inter'] bg-white border border-gray-200 rounded-md shadow-lg">
+                        <DropdownMenuItem 
+                          key={file.id} 
+                          onClick={() => onSelectFile(file.id)}
+                          className={`hover:bg-gray-50 transition-colors cursor-pointer group ${
+                            isSelected ? 'bg-blue-50/40' : ''
+                          }`}
+                        >
+                          <CheckIcon className="w-4 h-4 mr-2" /> Select
+                        </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => onViewFile(file)} className="cursor-pointer">
                           <Eye className="w-4 h-4 mr-2" /> View Details
                         </DropdownMenuItem>
