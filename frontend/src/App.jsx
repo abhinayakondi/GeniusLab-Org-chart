@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import SignIn from "./pages/sign-in/SignIn";
-// import SignUp from "./pages/sign-up/SignUp";
 import LandingPage from "./pages/landing-page/LandingPage";
+import DashboardPage from "./pages/dashboard-page/DashboardPage";
 import OrgChartPage from "./pages/org-chart-page/OrgChartPage";
 import { useEffect } from "react";
 import { useMsal, useIsAuthenticated } from "@azure/msal-react";
@@ -35,6 +34,14 @@ function App() {
         element={
           <ProtectedRoute>
             <OrgChartPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
           </ProtectedRoute>
         }
       />
