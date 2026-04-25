@@ -3,7 +3,7 @@ import { Search, Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { FileTable } from "./FileTable";
-import { AddUserModal } from "./AddUserModal"; // Suggest renaming this component to AddFileModal later
+import { AddUserModal } from "./AddUserModal"; 
 import { toast } from "sonner";
 
 interface FileItem {
@@ -28,11 +28,16 @@ const initialFiles: FileItem[] = [
 
 export function FileManagement() {
   const [files, setFiles] = useState<FileItem[]>(initialFiles);
+  const [selectedFileId, setSelectedFileId] = useState<string | null>("1");
   const [searchQuery, setSearchQuery] = useState("");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const handleAddNewFile = () => setIsAddModalOpen(true);
   const handleCloseModal = () => setIsAddModalOpen(false);
+
+  const handleSelectFile = (id: string) => {
+    setSelectedFileId(id);
+  };
 
   const handleAddFile = (newFile: FileItem) => {
     setFiles((prev) => [newFile, ...prev]);
@@ -40,9 +45,9 @@ export function FileManagement() {
   };
 
   const handleDeleteFile = (fileId: string) => {
-    const file = files.find((f) => f.id === fileId);
+    if (selectedFileId === fileId) setSelectedFileId(null);
     setFiles((prev) => prev.filter((f) => f.id !== fileId));
-    if (file) toast.success(`${file.filename} deleted successfully.`);
+    toast.success(`File deleted successfully.`);
   };
 
   const handleEditFile = (file: FileItem) => toast.info(`Editing ${file.filename}...`);
@@ -58,34 +63,45 @@ export function FileManagement() {
         <div className="flex justify-between items-start mb-8">
           <div>
             <h1 className="text-xl text-gray-900 mb-0.5 font-['Inter']">File Management</h1>
-            <p className="text-gray-600 text-sm font-['Inter']">Manage excel files for org-charts</p>
+            <p className="text-gray-600 text-sm font-['Inter']">
+              Manage your excel files to generate their org-charts
+            </p>
           </div>
-          <Button onClick={handleAddNewFile} className="font-['Inter'] cursor-pointer bg-linear-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg">
-            <Plus className="w-4 h-4 mr-2" /> Upload File
+          <Button 
+            onClick={handleAddNewFile} 
+            className="cursor-pointer font-['Inter'] bg-linear-to-r from-blue-600 to-purple-600 hover:shadow-lg text-white transition-all"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Upload File
           </Button>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6 flex-1 flex flex-col">
+        <div className="bg-white rounded-lg border border-gray-200 p-6 flex-1 flex flex-col shadow-sm">
           <div className="mb-6">
             <h2 className="text-base text-gray-900 mb-0.5 font-['Inter']">File Directory</h2>
-            <p className="text-gray-600 text-sm font-['Inter']">{filteredFiles.length} files found</p>
+            <p className="text-gray-600 text-sm font-['Inter']">
+              Search files ({filteredFiles.length} files)
+            </p>
           </div>
 
           <div className="flex flex-wrap gap-4 mb-6">
             <div className="flex-1 min-w-80 relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <Input
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <input
+                type="text"
                 placeholder="Search file..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-gray-50 border-gray-200"
+                className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
               />
             </div>
           </div>
 
-          <div className="flex-1">
+          <div className="flex-1 overflow-hidden">
             <FileTable
               fileItems={filteredFiles}
+              selectedFileId={selectedFileId}
+              onSelectFile={handleSelectFile}
               onEditFile={handleEditFile}
               onViewFile={handleViewFile}
               onDeleteFile={handleDeleteFile}
@@ -97,7 +113,7 @@ export function FileManagement() {
       <AddUserModal
         isOpen={isAddModalOpen}
         onClose={handleCloseModal}
-        onAddUser={handleAddFile} // Ensure this component accepts these props
+        onAddUser={handleAddFile}
       />
     </div>
   );

@@ -17,6 +17,8 @@ interface FileItem {
 
 interface FileTableProps {
   fileItems: FileItem[];
+  selectedFileId: string | null;
+  onSelectFile: (id: string) => void;
   onEditFile: (file: FileItem) => void;
   onViewFile: (file: FileItem) => void;
   onDeleteFile: (fileId: string) => void;
@@ -24,55 +26,100 @@ interface FileTableProps {
 
 export function FileTable({
   fileItems,
+  selectedFileId,
+  onSelectFile,
   onEditFile,
   onViewFile,
   onDeleteFile,
 }: FileTableProps) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200">
+    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
       <div className="overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full border-collapse">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">File</th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Size</th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Date</th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
+              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                File
+              </th>
+              <th className="w-px whitespace-nowrap text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Status
+              </th>
+              <th className="w-px whitespace-nowrap text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Size
+              </th>
+              <th className="w-px whitespace-nowrap text-left py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Date
+              </th>
+              <th className="w-px whitespace-nowrap text-right py-3 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {fileItems.map((file) => (
-              <tr key={file.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="py-3 px-4 text-sm text-gray-900 font-['Inter']">{file.filename}</td>
-                  <td className="w-px whitespace-nowrap py-3 px-4 text-sm text-gray-600 font-['Inter']">{file.size}</td>
-                  <td className="w-px whitespace-nowrap py-3 px-4 text-sm text-gray-500 font-['Inter']">{file.time}</td>
-                  <td className="w-px whitespace-nowrap px-7 text-left">
+            {fileItems.map((file) => {
+              const isSelected = selectedFileId === file.id;
+              
+              return (
+                <tr 
+                  key={file.id} 
+                  onClick={() => onSelectFile(file.id)}
+                  className={`hover:bg-gray-50 transition-colors cursor-pointer group ${
+                    isSelected ? 'bg-blue-50/40' : ''
+                  }`}
+                >
+                  <td className="py-3 px-4 text-sm text-gray-900 font-['Inter'] font-medium">
+                    {file.filename}
+                  </td>
+                  <td className="w-px whitespace-nowrap py-3 px-4">
+                    {isSelected ? (
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
+                        Selected
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 border border-gray-200">
+                        Deselected
+                      </span>
+                    )}
+                  </td>
+                  <td className="w-px whitespace-nowrap py-3 px-4 text-sm text-gray-600 font-['Inter']">
+                    {file.size}
+                  </td>
+                  <td className="w-px whitespace-nowrap py-3 px-4 text-sm text-gray-500 font-['Inter']">
+                    {file.time}
+                  </td>
+                  <td 
+                    className="w-px whitespace-nowrap py-3 px-7 text-left"
+                    onClick={(e) => e.stopPropagation()} // Prevents selection when clicking actions
+                  >
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
+                        <Button variant="ghost" className="h-8 w-8 p-0 cursor-pointer">
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="w-40">
-                        <DropdownMenuItem onClick={() => onViewFile(file)}>
+                      <DropdownMenuContent align="end" className="w-40 font-['Inter'] bg-white border border-gray-200 rounded-md shadow-lg">
+                        <DropdownMenuItem onClick={() => onViewFile(file)} className="cursor-pointer">
                           <Eye className="w-4 h-4 mr-2" /> View Details
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => onEditFile(file)}>
+                        <DropdownMenuItem onClick={() => onEditFile(file)} className="cursor-pointer">
                           <FileEdit className="w-4 h-4 mr-2" /> Edit File
                         </DropdownMenuItem>
                         <DropdownMenuItem 
-                          className="text-red-600 focus:text-red-600" 
+                          className="text-red-600 focus:text-red-600 cursor-pointer" 
                           onClick={() => {
-                            if (confirm(`Delete ${file.filename}?`)) onDeleteFile(file.id);
+                            if (window.confirm(`Are you sure you want to delete ${file.filename}?`)) {
+                              onDeleteFile(file.id);
+                            }
                           }}
                         >
-                          <Trash2 className="w-4 h-4 mr-2" /> Delete
+                          <Trash2 className="w-4 h-4 mr-2" /> Delete File
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </td>
-              </tr>
-            ))}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
