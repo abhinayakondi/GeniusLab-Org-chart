@@ -49,7 +49,7 @@ const initialUsers: User[] = [
     role: "Admin",
     class: "-",
     status: "Active",
-    lastLogin: "10 minutes ago",
+    lastLogin: "10 mins ago",
   },
   {
     id: "4",
@@ -177,17 +177,17 @@ export function UserManagement() {
         {/* Header */}
         <div className="flex justify-between items-start mb-8">
           <div>
-            <h1 className="text-2xl text-gray-900 mb-2">
+            <h1 className="text-xl text-gray-900 mb-0.5 font-['Inter']">
               File Management
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm font-['Inter']">
               Manage your excel files to generate their
               org-charts
             </p>
           </div>
           <Button
             onClick={handleAddNewUser}
-            className="bg-linear-to-r from-blue-600 to-purple-600 hover:bg-blue-700 text-white"
+            className="cursor-pointer font-['Inter'] bg-linear-to-r from-blue-600 to-purple-600 hover:shadow-lg text-white"
           >
             <Plus className="w-4 h-4 mr-2" />
             Upload File
@@ -197,10 +197,10 @@ export function UserManagement() {
         {/* User Directory Section - Full Height */}
         <div className="bg-white rounded-lg border border-gray-200 p-6 flex-1 flex flex-col">
           <div className="mb-6">
-            <h2 className="text-lg text-gray-900 mb-2">
-              User Directory
+            <h2 className="text-base text-gray-900 mb-0.5 font-['Inter']">
+              File Directory 
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm font-['Inter']">
               Search files ({filteredUsers.length} users)
             </p>
           </div>

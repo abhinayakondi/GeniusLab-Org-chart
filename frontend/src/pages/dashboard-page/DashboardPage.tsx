@@ -18,8 +18,8 @@ export default function App() {
         return (
           <div className="flex-1 bg-gray-50 p-6">
             <div className="max-w-7xl mx-auto">
-              <h1 className="text-2xl text-gray-900 mb-2">Dashboard</h1>
-              <p className="text-gray-600">Dashboard content coming soon...</p>
+              <h1 className="text-xl text-gray-900 mb-0.5 font-['Inter']">Dashboard</h1>
+              <p className="text-gray-600 text-sm font-['Inter']">Dashboard content coming soon...</p>
             </div>
           </div>
         );
@@ -27,8 +27,8 @@ export default function App() {
         return (
           <div className="flex-1 bg-gray-50 p-6">
             <div className="max-w-7xl mx-auto">
-              <h1 className="text-2xl text-gray-900 mb-2">Settings</h1>
-              <p className="text-gray-600">Settings content coming soon...</p>
+              <h1 className="text-xl text-gray-900 mb-0.5 font-['Inter']">Settings</h1>
+              <p className="text-gray-600 text-sm font-['Inter']">Settings content coming soon...</p>
             </div>
           </div>
         );
@@ -38,12 +38,14 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen w-screen flex bg-gray-50 overflow-hidden">
+    <div className="h-screen w-screen flex bg-gray-50">
       <Sidebar 
         activeItem={activeMenuItem} 
         onItemClick={handleMenuItemClick} 
       />
-      {renderContent()}
+      <div className="flex-1 overflow-y-auto">
+        {renderContent()}
+      </div>
       <Toaster />
     </div>
   );

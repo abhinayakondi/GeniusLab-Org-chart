@@ -80,29 +80,29 @@ export function UserTable({
           <tbody className="divide-y divide-gray-200">
             {users.map((user) => (
               <tr key={user.id} className="hover:bg-gray-50">
-                <td className="w-2/3 py-4 px-4">
-                  <div className="text-gray-900">
+                <td className="w-2/3 py-2 px-4">
+                  <div className="text-gray-900 text-sm font-['Inter']">
                     {user.name}
                   </div>
                 </td>
 
-                <td className="w-[12.6%] py-4 px-4">
-                  <div className="text-gray-900">
+                <td className="w-[12.6%] py-2 px-4">
+                  <div className="text-gray-900 text-sm font-['Inter']">
                     {user.class}
                   </div>
                 </td>
 
-                <td className="w-[12.6%] py-4 px-4">
-                  <div className="text-gray-600">
+                <td className="w-[12.6%] py-2 px-4">
+                  <div className="text-gray-600 text-sm font-['Inter']">
                     {user.lastLogin}
                   </div>
                 </td>
-                <td className="w-[8%] py-4 px-4">
+                <td className="w-[8%] py-2 px-4">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button
                         variant="ghost"
-                        className="h-8 w-8 p-0"
+                        className="cursor-pointer h-8 w-8 p-0"
                       >
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>
