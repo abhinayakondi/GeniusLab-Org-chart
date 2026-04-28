@@ -11,7 +11,7 @@ import Logo from "../assets/ArbreLogo.svg";
 export default function SearchAppBar({ chartInstance, data, onDataUpload }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" elevation={0} sx={{ backgroundColor: '#F9FAFB' }}>
+      <AppBar position="static" elevation={0} sx={{ backgroundColor: '#fff' }}>
         <Toolbar>
           {/* <img src={Logo} alt="Arbre Logo" style={{ width: 32, height: 30, marginRight: 12 }} />
           <Typography

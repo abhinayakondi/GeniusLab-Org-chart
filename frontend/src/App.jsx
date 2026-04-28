@@ -27,8 +27,6 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/landing" element={<LandingPage />} />
-      {/* <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/sign-up" element={<SignUp />} /> */}
       <Route
         path="/org-chart"
         element={

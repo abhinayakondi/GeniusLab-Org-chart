@@ -23,7 +23,7 @@ export function Sidebar({
   onToggle
 }: SidebarProps) {
   const menuItems = [
-    { id: "chart-view", label: "Chart View", icon: Workflow, },
+    // { id: "chart-view", label: "Chart View", icon: Workflow, },
     { id: "file-directory", label: "File Directory", icon: FileText,},
     { id: "settings", label: "Settings", icon: Settings },
   ];

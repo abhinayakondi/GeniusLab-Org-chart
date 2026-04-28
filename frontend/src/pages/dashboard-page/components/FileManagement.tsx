@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Search, Plus } from "lucide-react";
+import { Search, Plus, EyeIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { FileTable } from "./FileTable";
 import { AddUserModal } from "./AddUserModal"; 
 import { toast } from "sonner";
+//import OrgChartPage from "../../org-chart-page/OrgChartPage";
+import { useNavigate } from "react-router-dom";
 
 interface FileItem {
   id: string;
@@ -27,6 +29,7 @@ const initialFiles: FileItem[] = [
 ];
 
 export function FileManagement() {
+  const navigate = useNavigate();
   const [files, setFiles] = useState<FileItem[]>(initialFiles);
   const [selectedFileId, setSelectedFileId] = useState<string | null>("1");
   const [searchQuery, setSearchQuery] = useState("");
@@ -77,11 +80,27 @@ export function FileManagement() {
         </div>
 
         <div className="bg-white rounded-lg border border-gray-200 p-6 flex-1 flex flex-col shadow-sm">
-          <div className="mb-6">
-            <h2 className="text-base text-gray-900 mb-0.5 font-['Inter']">File Directory</h2>
-            <p className="text-gray-600 text-sm font-['Inter']">
-              Search files ({filteredFiles.length} files)
-            </p>
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h2 className="text-base text-gray-900 mb-0.5 font-['Inter']">File Directory</h2>
+              <p className="text-gray-600 text-sm font-['Inter']">
+                Search files ({filteredFiles.length} files)
+              </p>
+            </div>
+            <Button 
+              // onClick={() => {
+              //   if (selectedFileId) {
+              //     navigate("/org-chart");
+              //   } else {
+              //     toast.error("Please select a file first");
+              //   }
+              // }}
+              onClick={() => {navigate("/org-chart");}}
+              className="cursor-pointer font-['Inter'] bg-white border border-gray-200 duration-200 hover:shadow-[0px_4px_10px_rgba(0,0,0,0.10)] text-black transition-all"
+            >
+              <EyeIcon className="w-4 h-4 mr-2" />
+              View Selected Chart
+            </Button>
           </div>
 
           <div className="flex flex-wrap gap-4 mb-6">
