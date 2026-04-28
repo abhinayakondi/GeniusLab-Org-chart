@@ -19,7 +19,7 @@ export default function App() {
   }
 
   if (isAuthenticated) {
-    return <Navigate to="/org-chart" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   const handleSignIn = () => {
