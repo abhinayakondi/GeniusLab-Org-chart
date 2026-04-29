@@ -19,8 +19,8 @@ interface FileTableProps {
   fileItems: FileItem[];
   selectedFileId: string | null;
   onSelectFile: (id: string) => void;
-  onEditFile: (file: FileItem) => void;
-  onViewFile: (file: FileItem) => void;
+  // onEditFile: (file: FileItem) => void;
+  // onViewFile: (file: FileItem) => void;
   onDeleteFile: (fileId: string) => void;
 }
 
@@ -28,8 +28,6 @@ export function FileTable({
   fileItems,
   selectedFileId,
   onSelectFile,
-  onEditFile,
-  onViewFile,
   onDeleteFile,
 }: FileTableProps) {
   return (

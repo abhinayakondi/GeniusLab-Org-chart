@@ -3,9 +3,7 @@ import { Search, Plus, EyeIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { FileTable } from "./FileTable";
-import { AddFileModal } from "./AddFileModal"; 
 import { toast } from "sonner";
-//import OrgChartPage from "../../org-chart-page/OrgChartPage";
 import { useNavigate } from "react-router-dom";
 
 interface FileItem {
@@ -33,18 +31,9 @@ export function FileManagement() {
   const [files, setFiles] = useState<FileItem[]>(initialFiles);
   const [selectedFileId, setSelectedFileId] = useState<string | null>("1");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
-  const handleAddNewFile = () => setIsAddModalOpen(true);
-  const handleCloseModal = () => setIsAddModalOpen(false);
 
   const handleSelectFile = (id: string) => {
     setSelectedFileId(id);
-  };
-
-  const handleAddFile = (newFile: FileItem) => {
-    setFiles((prev) => [newFile, ...prev]);
-    toast.success(`${newFile.filename} has been added successfully!`);
   };
 
   const handleDeleteFile = (fileId: string) => {
@@ -52,9 +41,6 @@ export function FileManagement() {
     setFiles((prev) => prev.filter((f) => f.id !== fileId));
     toast.success(`File deleted successfully.`);
   };
-
-  const handleEditFile = (file: FileItem) => toast.info(`Editing ${file.filename}...`);
-  const handleViewFile = (file: FileItem) => toast.info(`Viewing ${file.filename}...`);
 
   const filteredFiles = files.filter((file) =>
     file.filename.toLowerCase().includes(searchQuery.toLowerCase())
@@ -71,7 +57,6 @@ export function FileManagement() {
             </p>
           </div>
           <Button 
-            onClick={handleAddNewFile} 
             className="cursor-pointer font-['Inter'] bg-linear-to-r from-blue-600 to-purple-600 hover:shadow-lg text-white transition-all"
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -121,19 +106,11 @@ export function FileManagement() {
               fileItems={filteredFiles}
               selectedFileId={selectedFileId}
               onSelectFile={handleSelectFile}
-              onEditFile={handleEditFile}
-              onViewFile={handleViewFile}
               onDeleteFile={handleDeleteFile}
             />
           </div>
         </div>
       </div>
-
-      <AddFileModal
-        isOpen={isAddModalOpen}
-        onClose={handleCloseModal}
-        onAddFile={handleAddFile}
-      />
     </div>
   );
 }
